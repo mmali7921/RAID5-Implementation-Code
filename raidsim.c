@@ -288,7 +288,7 @@ int write_5(int ndisks, int strip, int size, int lba, disk_array_t *da, char *bu
   return 0;
 }
 
-i
+
 int main( int argc, char *argv[] )
 {
   char *c;
@@ -349,15 +349,15 @@ int main( int argc, char *argv[] )
 
 
   //Check for more the 1 disk for RAID 4 or 5
-  if(level == 4 || level == 5){
-    if(ndisks < 2){
-      printf("ERROR: Must have at least 2 disks for RAID 4 and 5\n");
+  if( level == 5){
+    if(ndisks < 3){
+      printf("ERROR: Must have at least 3 disks for RAID 5\n");
       return 1;
     }
   }
 
   //Initialize failed_disk
-  failed_disk = malloc(sizeof(int) * ndisks);
+  failed_disk =malloc(sizeof(int) * ndisks);
   for(i = 0; i < ndisks; i++)
     failed_disk[i] = 0;
 
@@ -410,7 +410,7 @@ int main( int argc, char *argv[] )
 	  tmp = strtok(NULL," ");
 	}
 
-      for (i = 0; i < num_cmds; i++){
+      for (i = 0; i < num_cmds; i++){+
 	count++;
 
 
